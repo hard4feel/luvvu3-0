@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from groq import Groq
 
-app = Flask(__name__, static_folder='dist')
+app = Flask(__name__, static_folder='dist', static_url_path='')
 CORS(app)
 
 # === СЕКРЕТЫ ИЗ ПЕРЕМЕННЫХ ОКРУЖЕНИЯ ===
@@ -47,7 +47,7 @@ def chat():
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": user_msg}
         ],
-        temperature=0.8,  # чуть выше, чтобы был живым
+        temperature=0.8,
         max_tokens=800,
     )
     reply = completion.choices[0].message.content
@@ -61,4 +61,6 @@ def serve(path):
     return send_from_directory(app.static_folder, 'index.html')
 
 if __name__ == '__main__':
-    app.run(port=5000)
+    # ВАЖНО: слушаем 0.0.0.0 и порт из переменной окружения
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
