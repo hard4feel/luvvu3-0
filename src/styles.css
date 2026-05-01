@@ -1,0 +1,151 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-ember: var(--ember);
+  --color-ember-foreground: var(--ember-foreground);
+
+  --font-sans: "Nunito", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", "Nunito", serif;
+
+  --shadow-glow: 0 0 40px -10px var(--ember);
+  --shadow-soft: 0 8px 30px -12px oklch(0 0 0 / 0.35);
+}
+
+:root {
+  --radius: 0.875rem;
+
+  /* Light — warm cream & coral */
+  --background: oklch(0.985 0.012 70);
+  --foreground: oklch(0.28 0.025 30);
+  --card: oklch(0.995 0.008 75);
+  --card-foreground: oklch(0.28 0.025 30);
+  --popover: oklch(0.995 0.008 75);
+  --popover-foreground: oklch(0.28 0.025 30);
+  --primary: oklch(0.32 0.03 30);
+  --primary-foreground: oklch(0.98 0.012 70);
+  --secondary: oklch(0.95 0.018 65);
+  --secondary-foreground: oklch(0.32 0.03 30);
+  --muted: oklch(0.95 0.018 65);
+  --muted-foreground: oklch(0.5 0.025 40);
+  --accent: oklch(0.93 0.025 60);
+  --accent-foreground: oklch(0.32 0.03 30);
+  --destructive: oklch(0.6 0.18 25);
+  --destructive-foreground: oklch(0.98 0.012 70);
+  --border: oklch(0.9 0.015 65);
+  --input: oklch(0.93 0.018 65);
+  --ring: oklch(0.7 0.13 35);
+
+  --ember: oklch(0.7 0.14 35);
+  --ember-foreground: oklch(0.99 0.005 70);
+
+  --sidebar: oklch(0.97 0.018 70);
+  --sidebar-foreground: oklch(0.32 0.03 30);
+  --sidebar-border: oklch(0.9 0.015 65);
+  --sidebar-accent: oklch(0.93 0.025 60);
+  --sidebar-accent-foreground: oklch(0.32 0.03 30);
+}
+
+.dark {
+  /* Warm dusk — cocoa & coral */
+  --background: oklch(0.21 0.012 35);
+  --foreground: oklch(0.96 0.015 70);
+  --card: oklch(0.25 0.014 35);
+  --card-foreground: oklch(0.96 0.015 70);
+  --popover: oklch(0.25 0.014 35);
+  --popover-foreground: oklch(0.96 0.015 70);
+  --primary: oklch(0.96 0.015 70);
+  --primary-foreground: oklch(0.21 0.012 35);
+  --secondary: oklch(0.3 0.016 35);
+  --secondary-foreground: oklch(0.96 0.015 70);
+  --muted: oklch(0.3 0.016 35);
+  --muted-foreground: oklch(0.74 0.02 50);
+  --accent: oklch(0.34 0.02 35);
+  --accent-foreground: oklch(0.96 0.015 70);
+  --destructive: oklch(0.65 0.18 25);
+  --destructive-foreground: oklch(0.98 0.005 70);
+  --border: oklch(0.32 0.015 35);
+  --input: oklch(0.32 0.015 35);
+  --ring: oklch(0.72 0.14 35);
+
+  --ember: oklch(0.74 0.15 35);
+  --ember-foreground: oklch(0.21 0.012 35);
+
+  --sidebar: oklch(0.19 0.012 35);
+  --sidebar-foreground: oklch(0.94 0.015 70);
+  --sidebar-border: oklch(0.3 0.014 35);
+  --sidebar-accent: oklch(0.3 0.016 35);
+  --sidebar-accent-foreground: oklch(0.96 0.015 70);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html, body, #root {
+    height: 100%;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .ember-glow {
+    box-shadow: 0 0 0 1px color-mix(in oklab, var(--ember) 40%, transparent),
+                0 10px 40px -10px color-mix(in oklab, var(--ember) 50%, transparent);
+  }
+  .text-ember {
+    color: var(--ember);
+  }
+  .bg-ember {
+    background-color: var(--ember);
+  }
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+}
